@@ -342,7 +342,7 @@ class QueueJob(models.Model):
             record.message_subscribe(partner_ids=users.mapped("partner_id").ids)
             msg = record._message_failed_job()
             if msg:
-                record.message_post(body=msg, subtype_xmlid="queue_job.mt_job_failed")
+                record.sudo().message_post(body=msg, subtype_xmlid="queue_job.mt_job_failed")
 
     def _subscribe_users_domain(self):
         """Subscribe all users having the 'Queue Job Manager' group"""
